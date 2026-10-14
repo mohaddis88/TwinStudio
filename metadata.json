@@ -1,0 +1,6 @@
+{
+  "name": "TwinStudio",
+  "description": "Human-looking AI creators for UGC and marketing videos with custom twin generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+:root,
+[data-theme="dark"] {
+  --bg: #120D0A;
+  --bg-color: #120D0A;
+  --surface-color: #1B1410;
+  --surface-glass: rgba(27, 20, 16, 0.75);
+  --surface-card: #1B1410;
+  --surface-elevated: #2A1F18;
+  --text-main: #F8F7F5;
+  --text-secondary: #E6D2BE;
+  --text-muted: #C8B4A0;
+  --border-color: rgba(107, 85, 69, 0.40);
+  --border-focus: #C8B4A0;
+  --accent-from: #C8B4A0;
+  --accent-to: #967A68;
+  --accent-solid: #C8B4A0;
+  --accent-text: #120D0A;
+  --coral-color: #FF8A7A;
+  --amber-color: #FFC66B;
+  --status-success: #5FB57A;
+  --status-warning: #E0A24A;
+  --status-error: #E5675F;
+  --glow-color: rgba(200, 180, 160, 0.12);
+  --glow-blend: screen;
+  --scrollbar-thumb: linear-gradient(135deg, #C8B4A0 0%, #967A68 100%);
+  --scrollbar-thumb-hover: linear-gradient(135deg, #E6D2BE 0%, #B89B82 100%);
+  --page-gradient: 
+    radial-gradient(circle at 50% 0%, rgba(200, 180, 160, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 100% 35%, rgba(138, 43, 85, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 0% 75%, rgba(107, 85, 69, 0.08) 0%, transparent 60%),
+    #120D0A;
+}
+
+[data-theme="light"] {
+  --bg: #FBEBDD;
+  --bg-color: #FBEBDD;
+  --surface-color: #FFF7F0;
+  --surface-glass: rgba(255, 255, 255, 0.55);
+  --surface-card: rgba(255, 247, 240, 0.85);
+  --surface-elevated: #FFF1E6;
+  --text-main: #2B1B3D;
+  --text-secondary: #5B4A6E;
+  --text-muted: #7A698F;
+  --border-color: #E7CBB8;
+  --border-focus: #7C4DFF;
+  --accent-from: #7C4DFF;
+  --accent-to: #B388FF;
+  --accent-solid: #7C4DFF;
+  --accent-text: #FFFFFF;
+  --coral-color: #FF8A7A;
+  --amber-color: #FFC66B;
+  --status-success: #2E7D32;
+  --status-warning: #B26A00;
+  --status-error: #D32F2F;
+  --glow-color: rgba(124, 77, 255, 0.16);
+  --glow-blend: multiply;
+  --scrollbar-thumb: linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);
+  --scrollbar-thumb-hover: linear-gradient(135deg, #651FFF 0%, #7C4DFF 100%);
+  --page-gradient: 
+    radial-gradient(ellipse at 20% 0%, rgba(255, 138, 122, 0.24) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(124, 77, 255, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 80%, rgba(255, 198, 107, 0.22) 0%, transparent 60%),
+    #FBEBDD;
+}
+
+@layer base {
+  * {
+    border-color: var(--border-color);
+  }
+
+  body {
+    background-color: var(--bg-color);
+    background-image: var(--page-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Hide native scrollbar and prevent it from reserving space */
+  html, body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    scrollbar-gutter: auto !important;
+  }
+
+  ::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+.font-serif-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+/* Home Card Hover Gradient Border Sweep */
+@keyframes borderSweep {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
+}
+
+.animate-border-sweep {
+  background-size: 200% 200%;
+  animation: borderSweep 2.8s linear infinite;
+}
+
+/* Glass Model Silhouette Hover Shimmer */
+@keyframes glassLightSweep {
+  0% {
+    background-position: -150% -150%;
+  }
+  100% {
+    background-position: 250% 250%;
+  }
+}
+
+.home-card-hover {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.home-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+}
+
+.home-card-hover .card-icon {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.home-card-hover:hover .card-icon {
+  transform: scale(1.08) rotate(3deg);
+}
+
+
+
