@@ -68,7 +68,7 @@ export const HomeCard: React.FC<HomeCardProps> = ({
             background:
               'linear-gradient(135deg, transparent 20%, var(--border-focus) 50%, transparent 80%) border-box',
             WebkitMask:
-              'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              'linear-gradient(white 0 0) content-box, linear-gradient(white 0 0)',
             WebkitMaskComposite: 'xor',
             maskComposite: 'exclude',
           }}

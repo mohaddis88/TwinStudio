@@ -102,7 +102,7 @@ export interface GeneratedVideoResult {
   videoUrl: string;
   durationSeconds: number;
   createdAt: string;
-  aspectRatio: '9:16' | '16:9';
+  aspectRatio: '9:16' | '16:9' | '1:1' | '4:5';
 }
 
 export interface UploadedPhoto {
@@ -159,13 +159,14 @@ export interface ContactInquiry {
 
 export type ThemeMode = 'light' | 'dark';
 
-export type PageId = 
+export type PageId =
   | 'home'
-  | 'gallery' 
-  | 'model-detail' 
-  | 'studio' 
-  | 'create-twin' 
-  | 'about' 
+  | 'gallery'
+  | 'model-detail'
+  | 'studio'
+  | 'create-twin'
+  | 'about'
   | 'contact'
-  | 'auth';
+  | 'auth'
+  | 'admin';
 

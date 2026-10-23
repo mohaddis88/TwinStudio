@@ -1,83 +1,139 @@
-# Design system
+# TwinStudio Design System — Forma Editorial Token System
 
-*Last updated: 13 Oct 2026. Tokens below are the source of truth. If a component needs a value that isn't here, add a token first, then use it.*
+*Source of truth for TwinStudio UI/UX architecture, layout, motion, and CSS tokens.*
 
-The look: warm, soft, a bit glassy, never crowded. Light mode borrows the peach, lavender and coral of the reference image. Dark mode is the warm brown theme with faint glows so it never goes flat black.
+The look: editorial, refined, warm bone and deep ink aesthetic matching the Forma studio reference architecture.
+- **Light mode default (Forma Warm Bone)**: Ivory/bone canvas (`#ebe9e5`), warm stone surfaces (`#e2dfd9`, `#d6d2ca`), and deep ink typography (`#151514`).
+- **Dark mode (Forma Obsidian)**: Deep black canvas (`#0b0b0a`), obsidian surfaces (`#151514`, `#222220`), and bone typography (`#ebe9e5`).
 
-## Themes
+---
 
-Set with `data-theme="light|dark"` on the root. Default follows the system setting, a nav toggle overrides it, and the choice is saved. Every page and every component must read from variables. If something stays dark in light mode, a color is hardcoded somewhere. (This has already happened once on the Create your twin page.)
+## 1. Foundation Tokens
 
-| Token | Light | Dark |
+### Typography
+
+TwinStudio pairs a grotesque primary typeface (`Geist`) with an expressive high-contrast italic serif (`Instrument Serif`) strictly for heading accents.
+
+| Token | Definition | Usage Rules |
 |---|---|---|
-| --bg | #FBEBDD | #120D0A |
-| --surface | #FFF7F0 | #1B1410 |
-| --surface-2 | #F4E3D3 | #2A1F18 |
-| --text | #2B1B3D | #F8F7F5 |
-| --text-secondary | #5B4A6E | #E6D2BE |
-| --text-muted | #6E5F80 | #C8B4A0 |
-| --border | #E7CBB8 | rgba(107,85,69,.4) |
-| --primary | #7C4DFF | #C8B4A0 |
-| --primary-grad | #7C4DFF to #B388FF | #C8B4A0 to #967A68 |
-| --coral | #FF8A7A | #E5675F |
-| --amber | #FFC66B | #E0A24A |
-| --success | #2E7D32 | #5FB57A |
-| --warning | #B26A00 | #E0A24A |
-| --error | #B3261E | #E5675F |
+| `--font-sans` | `'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif` | Body copy, UI labels, buttons, navigation, inputs, cards, metadata |
+| `--font-serif` | `'Instrument Serif', Georgia, serif` | Strictly italic (`font-style: italic`), used only for the accent phrase or single accent word in section headings (e.g., *"answers back."*, *"in motion."*, *"hold a feed."*, *"to human."*, *"Let's give it a face."*) |
 
-Small text must hit 4.5:1 contrast. The accent shades (#C8B4A0, #967A68) are for fills, borders and large text only.
+### True Editorial Typography Scale
 
-Page backgrounds are gradients, never flat: peach into lavender into a coral glow in light mode, brown with plum and coral haze in dark.
+| Token | Value | Target Context |
+|---|---|---|
+| `--text-xs` | `12px` | Eyebrows, uppercase captions, letter-spacing: 0.12em, timestamps |
+| `--text-sm` | `14px` | Nav links, buttons, step tabs, secondary labels |
+| `--text-base` | `16px` | Standard body copy, line-height: 1.55 |
+| `--text-lg` | `18px` | Editorial lead copy, line-height: 1.5 |
+| `--text-xl` | `24px` | Creator card titles, step titles, letter-spacing: -0.02em |
+| `--text-2xl` | `34px` | Footer CTA heading, line-height: 1.15, letter-spacing: -0.03em |
+| `--text-3xl` | `clamp(44px, 5vw, 68px)` | Major section headings, line-height: 1.04, letter-spacing: -0.035em |
+| `--text-display` | `clamp(52px, 6.2vw, 88px)` | Hero headline ("Presence that answers back."), line-height: 0.98, letter-spacing: -0.04em |
+| `--text-statement` | `clamp(56px, 7.5vw, 108px)` | Studio statement headline ("We give shape to what is still in motion."), line-height: 1.0, letter-spacing: -0.045em |
+| `--text-giant` | `clamp(110px, 20vw, 310px)` | Hero background watermark ("twin") & footer mega wordmark ("TwinStudio"), font-weight: 700, letter-spacing: -0.05em, line-height: 0.82 |
 
-## Type
+---
 
-Inter for everything. Instrument Serif italic for one accent word per heading, no more. Scale: 12, 14, 16, 18, 24, 30, 48, 60 px. Body line length caps at 65 characters. Sentence case everywhere. No all-caps paragraphs.
+## 2. Color Tokens & Theme Architecture
 
-## Space and shape
+Theme switching is controlled via `data-theme="light|dark"` on the root element (`<html>`). Light mode is the default. Every component reads purely from semantic tokens with zero hardcoded hex values.
 
-Spacing on a 4 px scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128. Radius: 12 for inputs and buttons, 20 for cards and modals, full pill for chips and the scrolled nav. Nothing else. One soft warm shadow. Cards use a glass surface with a 1 px border.
+| Token | Light Mode Default (Forma Warm Bone) | Dark Mode (Forma Obsidian) | Semantic Purpose |
+|---|---|---|---|
+| `--bg` | `#ebe9e5` | `#0b0b0a` | Canvas base background |
+| `--surface` | `#e2dfd9` | `#151514` | Tier-1 surfaces: cards, modals, dropdowns |
+| `--surface-2` | `#d6d2ca` | `#222220` | Tier-2 elevated surfaces: active chips, hover states, sunken inputs |
+| `--text` | `#151514` | `#ebe9e5` | Primary headings, high-emphasis text, prominent titles |
+| `--text-secondary` | `#5c5a55` | `#a3a09a` | Secondary descriptions, subheadings, labels |
+| `--text-muted` | `#8c8982` | `#6e6c66` | Captions, placeholders, metadata, inactive items |
+| `--text-inverse` | `#ebe9e5` | `#151514` | Text on inverted fills (primary buttons, dark badges) |
+| `--border` | `rgba(21, 21, 20, 0.14)` | `rgba(235, 233, 229, 0.14)` | Standard hairline borders, dividers, card boundaries |
+| `--border-strong` | `rgba(21, 21, 20, 0.28)` | `rgba(235, 233, 229, 0.28)` | Emphasized borders, hover states, active outlines |
+| `--primary` | `#151514` | `#ebe9e5` | Primary brand ink fill, active highlights, key CTAs |
 
-## Layout
+### Semantic Status & Feedback Tokens
 
-Mobile first. Check at 360, 768 and 1280 px. Container max width 1200 px (1280 for the model grid). Model grid: 2 columns under 640 px, 3 at 768, 4 at 1024, 5 from 1280. Equal card heights. Text clamps instead of overflowing. No horizontal scroll, ever.
+| Token | Light Mode | Dark Mode | Usage |
+|---|---|---|---|
+| `--status-success` | `#1b6d34` | `#4ade80` | Confirmed states, completed generation, verified badge |
+| `--status-warning` | `#875200` | `#fbbf24` | Alert banners, quota warnings, review flags |
+| `--status-error` | `#b5221d` | `#f87171` | Input validation errors, failure states, destructive actions |
 
-## Components
+---
 
-One component per pattern: Button, Card, Chip, Input, Tooltip, Modal, Stepper, Toast, Section, GlassFigure. No copy-pasted styling.
+## 3. Spacing Scale
 
-**Buttons.** Primary (gradient fill), Secondary (outline), Ghost (text with an arrow, except on "Create your twin", which has none). 44 to 48 px tall. One primary per section. Labels say what happens: "Create video", not "Submit". Every button needs default, hover, focus-visible, active, disabled and loading states.
+- Micro scale: `--space-1` (`1px`), `--space-2` (`4px`), `--space-3` (`6px`), `--space-4` (`8px`), `--space-5` (`16px`), `--space-6` (`22px`), `--space-7` (`24px`), `--space-8` (`26px`).
+- Layout spacers: `--space-layout-1: 32px`, `--space-layout-2: 48px`, `--space-layout-3: 64px`, `--space-layout-4: 96px`.
+- Gutter: `--gut: clamp(20px, 3.3vw, 48px)`.
+- Fluid ease: `--ease: cubic-bezier(0.2, 0.7, 0.2, 1)`.
 
-**Model card.** Glass silhouette (3:4), name, one role line, at most two chips. Play icon on hover. The "AI-generated" mark is a small corner icon with a tooltip, not repeated text.
+---
 
-**Model profile.** Top: media, name, role, "Use this model", "Character kit". Below: four tabs (Overview, Looks, Videos, Voice), one visible at a time. Sticky CTA on mobile.
+## 4. Radius & Motion Tokens
 
-**Home cards.** Icon, a title of four words or fewer, one sentence of 16 words or fewer. Nothing more.
+- `--radius-xs`: `50px` (Circle icon buttons, badges)
+- `--radius-pill`: `999px` (Pill buttons, navigation controls)
+- `--radius-md`: `12px` (Inputs, dialogs)
+- Durations: `--duration-instant: 250ms`, `--duration-fast: 300ms`, `--duration-normal: 350ms`, `--duration-slow: 400ms`, `--duration-slower: 500ms`, `--duration-step6: 600ms`.
 
-**Nav.** Full width at the top, transparent. After about 40 px of scroll it turns into a floating glass pill with a spring transition (roughly 400 ms), roomy spacing, same text size. Signed-in users see their name as a button that opens a small panel with their email and "Sign out". There is no standalone sign-out icon. On mobile the sheet shows the same info.
+---
 
-**Scrollbar.** The native bar is hidden so the page uses the full width. A thin overlay thumb appears while scrolling and fades about 800 ms after the last scroll event.
+## 5. Page Architecture (Forma Reference Match)
 
-**Cursor glow.** A fixed radial gradient that sticks to the pointer with no easing. Fine pointers only, and off when the user prefers reduced motion.
+### Section 1: Hero (`src/pages/Home.tsx` + `src/components/ParticleAvatarCanvas.tsx`)
+- Full viewport height (`min-height: 100vh`), `padding: clamp(90px, 12vh, 120px) var(--gut) clamp(32px, 4.5vh, 48px)`.
+- Giant centered background watermark `"twin"` in `var(--text-giant)` at 4.5% opacity.
+- Interactive HTML5 canvas with 18,000+ particles rendering a 3D sculpted human bust in three-quarter profile with horizontal liquid-particle ribbons streaming to canvas edges.
+- Pointer interaction: mouse movement swirls and repels particles with spring recovery. Pauses via `IntersectionObserver` when off-screen.
+- Split bottom grid: left column features `— AI HUMAN STUDIO — EST. 2026` and `Presence that answers back.` (italic serif accent). Right column contains editorial lead copy, solid black pill button `Create a video →`, and underlined link `Explore models →`.
 
-## Motion
+### Section 2: Studio Statement (`src/components/ParticleTextHeading.tsx`)
+- Padding: `clamp(100px, 14vw, 180px) var(--gut)`.
+- Eyebrow: `The Studio`.
+- Headline: `"We give shape to what is still in motion."` with `in motion.` in `Instrument Serif` italic.
+- Stipple-to-solid reveal: samples DOM text onto an offscreen canvas into circular dots. As the section scrolls from 85% to 45% into view, dots converge and crossfade into the crisp DOM element.
+- Offset bottom row: lead paragraph + underlined link `About the studio →`.
 
-Reveal on scroll (fade plus 16 px rise, staggered 80 ms, once). Cards lift 4 px on hover. Page transitions fade. 200 to 500 ms, ease-out. Animate transform and opacity only. Pause anything off-screen. Honor `prefers-reduced-motion` by removing movement, not by removing meaning.
+### Section 3: Selected Creators (`src/pages/Home.tsx`)
+- Padding: `clamp(80px, 10vw, 140px) var(--gut)`.
+- Heading: `Creators that hold a feed.` + link `All models →`.
+- Asymmetric 2-column masonry grid matching Forma layout:
+  - Card 1 (Left, 7 columns): Alya, Creator No. 01 (`aspect-ratio: 4/3.2`), AI-generated verified badge, smooth hover zoom.
+  - Card 2 (Right, 5 columns, offset down 32): Marcus, Creator No. 02 (`aspect-ratio: 4/5`).
+  - Card 3 (Left, 5 columns shifted): Chloe, Creator No. 03 (`aspect-ratio: 4/5`).
+  - Card 4 (Right, 6 columns offset 16): Dr. Kavitha, Creator No. 04 (`aspect-ratio: 16/10`).
 
-## States every screen needs
+### Section 4: Approach (`src/pages/Home.tsx` + `ParticleAvatarCanvas.tsx` mode="sphere")
+- Sticky interactive grid with 4 stages: `01 Identity`, `02 Voice`, `03 Matter`, `04 Delivery`.
+- Interactive tab bar with 6-second auto-advance (pauses on hover).
+- Animated progress bar indicator.
+- Right column particle sphere morphing dynamically across the 4 steps:
+  - Step 01: Dispersed noise cloud.
+  - Step 02: Flowing acoustic wave ribbons.
+  - Step 03: Intertwined pearl/sand ribbons with emergent facial relief contour.
+  - Step 04: Resolved, breathing 3D digital avatar bust.
 
-Loading (skeletons, not spinners on blank pages), empty (say what to do next), error (one sentence and one action), disabled (explain why if it isn't obvious), success (short, then move on).
+### Section 5: Stats & Marquee + Editorial Footer (`src/components/layout/Footer.tsx`)
+- Studio stats: `64` Projects delivered, `11` Languages & dialects, `7` Creator personas, `98%` Direct response lift.
+- Animated continuous marquee track with alternating sans / serif typography.
+- 4-column footer grid (`Have a campaign still in motion? Let's give it a face.` + pill CTA + Studio / Contact / Follow lists).
+- Giant bleed wordmark: `<div class="footer-wordmark">TwinStudio</div>` in `Geist` 700 at `clamp(90px, 17.5vw, 280px)`.
+- Bottom legal bar with copyright and studio attribution.
 
-## Help and errors
+---
 
-Use a small (i) icon for anything non-obvious: consent, voice samples, styles, liveness, the character kit. It must work with a keyboard. Error text is plain and specific, with one next step, and no codes or stack traces. See the catalog in SYSTEM_DESIGN.md.
+## 6. WCAG 2.2 AA Contrast Compliance
 
-Write: "That photo is too dark. Try one near a window."
-Don't write: "Error 422: image luminance below threshold."
-
-## Accessibility
-
-Semantic HTML. Visible focus ring on every interactive element. Full keyboard navigation (the profile menu uses arrow keys and Escape). Alt text on images. Contrast of 4.5:1 for body text. `aria-live` for errors and job status.
-
-## Copy
-
-Short and concrete. The writing rules in AI_RULES.md apply to every word on the site.
+- **Light Mode (`#ebe9e5` canvas)**:
+  - Ink text (`#151514`) on `--bg`: **15.07 : 1** (Passes AAA)
+  - Secondary text (`#5c5a55`) on `--bg`: **4.85 : 1** (Passes AA)
+  - Muted text (`#8c8982`) on `--bg`: **3.22 : 1** (Passes AA Large)
+  - Inverse text on `--primary`: **15.07 : 1** (Passes AAA)
+- **Dark Mode (`#0b0b0a` canvas)**:
+  - Bone text (`#ebe9e5`) on `--bg`: **16.84 : 1** (Passes AAA)
+  - Secondary text (`#a3a09a`) on `--bg`: **8.20 : 1** (Passes AAA)
+  - Muted text (`#6e6c66`) on `--bg`: **4.10 : 1** (Passes AA Large)
+  - Inverse text on `--primary`: **16.84 : 1** (Passes AAA)

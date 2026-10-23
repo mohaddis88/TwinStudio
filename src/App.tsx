@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { PageId, Model, ModelFilters, UserSession, ThemeMode } from './types';
 import { api } from './services/twinStudioApi';
 import { auth } from './services/auth';
-import { Header } from './components/common/Header';
-import { Footer } from './components/common/Footer';
+import { Nav } from './components/layout/Nav';
+import { Footer } from './components/layout/Footer';
 import { CursorGlow } from './components/common/CursorGlow';
 import { Toast, ToastMessage } from './components/common/Toast';
 import { PageOverlayScrollbar } from './components/common/OverlayScrollbar';
@@ -15,9 +15,21 @@ import { CreateTwinPage } from './components/twin/CreateTwinPage';
 import { AboutPage } from './components/about/AboutPage';
 import { ContactPage } from './components/contact/ContactPage';
 import { AuthPage } from './components/auth/AuthPage';
+import { Admin } from './pages/Admin';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [currentPage, setCurrentPage] = useState<PageId>(() => {
+    if (typeof window !== 'undefined') {
+      if (
+        window.location.pathname.startsWith('/admin') ||
+        window.location.hash === '#/admin' ||
+        window.location.search.includes('admin')
+      ) {
+        return 'admin';
+      }
+    }
+    return 'home';
+  });
   const [models, setModels] = useState<Model[]>([]);
   const [isLoadingModels, setIsLoadingModels] = useState(true);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
@@ -151,13 +163,28 @@ export default function App() {
     }
   };
 
+  if (currentPage === 'admin') {
+    return (
+      <div className="min-h-screen flex flex-col relative selection:bg-[var(--border-focus)] selection:text-white">
+        <CursorGlow />
+        <Admin
+          onNavigate={(page) => {
+            setCurrentPage(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+        <Toast toast={toast} onDismiss={() => setToast(null)} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col relative selection:bg-[var(--border-focus)] selection:text-white">
       {/* 2. Cursor Glow Follower */}
       <CursorGlow />
 
-      {/* Shared Header with spring pill behavior & theme toggle */}
-      <Header
+      {/* Shared Nav with fixed full-width editorial layout & theme toggle */}
+      <Nav
         currentPage={currentPage}
         onNavigate={(page) => {
           if (page === 'create-twin' || page === 'studio') {
@@ -173,8 +200,8 @@ export default function App() {
         onToggleTheme={toggleTheme}
       />
 
-      {/* Main Page Layout Container (1200px max width, mobile-first) */}
-      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 pb-16">
+      {/* Main Page Layout Container */}
+      <main className="flex-1 w-full">
         {currentPage === 'home' && (
           <HomePage
             onNavigate={(page) => {
@@ -185,6 +212,7 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
+            theme={theme}
           />
         )}
 
@@ -216,7 +244,7 @@ export default function App() {
             onSelectModel={setSelectedModel}
             onBrowseGallery={() => setCurrentPage('gallery')}
             onCreateTwin={() => navigateWithAuthCheck('create-twin')}
-            onToast={(msg, type) => showToast(msg, type || 'success')}
+            onToast={(msg: string, type?: 'success' | 'warning' | 'error') => showToast(msg, type || 'success')}
           />
         )}
 
@@ -224,13 +252,13 @@ export default function App() {
           <CreateTwinPage
             onTwinCreated={handleTwinCreated}
             onBrowseGallery={() => setCurrentPage('gallery')}
-            onToast={(msg, type) => showToast(msg, type || 'success')}
+            onToast={(msg: string, type?: 'success' | 'warning' | 'error') => showToast(msg, type || 'success')}
           />
         )}
 
         {currentPage === 'about' && (
           <AboutPage
-            onNavigate={(page) => {
+            onNavigate={(page: PageId) => {
               setCurrentPage(page);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
@@ -239,7 +267,7 @@ export default function App() {
 
         {currentPage === 'contact' && (
           <ContactPage
-            onToast={(msg, type) => showToast(msg, type || 'success')}
+            onToast={(msg: string, type?: 'success' | 'warning' | 'error') => showToast(msg, type || 'success')}
           />
         )}
 

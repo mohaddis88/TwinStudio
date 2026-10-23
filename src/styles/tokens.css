@@ -1,0 +1,359 @@
+/**
+ * Forma Design System Tokens
+ * Source of truth for TwinStudio editorial bone/ink token architecture.
+ *
+ * Light mode default: Forma Warm Bone (#ebe9e5)
+ * Dark mode: Forma Obsidian (#0b0b0a)
+ */
+
+@theme {
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+}
+
+:root {
+  /* ==========================================================================
+     Typography Tokens
+     ========================================================================== */
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-primary: var(--font-sans);
+
+  /* True Editorial Typography Scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 14.5px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 34px;
+  --text-3xl: clamp(44px, 5vw, 68px);
+  --text-display: clamp(52px, 6.2vw, 88px);
+  --text-statement: clamp(56px, 7.5vw, 108px);
+  --text-giant: clamp(110px, 20vw, 310px);
+
+  /* Line Heights */
+  --leading-tight: 0.98;
+  --leading-snug: 1.04;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.55;
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ==========================================================================
+     Spacing Scale Tokens
+     ========================================================================== */
+  --space-1: 1px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 16px;
+  --space-6: 22px;
+  --space-7: 24px;
+  --space-8: 26px;
+
+  /* Layout Spacers */
+  --space-layout-1: 32px;
+  --space-layout-2: 48px;
+  --space-layout-3: 64px;
+  --space-layout-4: 96px;
+
+  --space-9: 32px;
+  --space-10: 48px;
+  --space-11: 64px;
+  --space-12: 96px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+
+  --gut: clamp(20px, 3.3vw, 48px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ==========================================================================
+     Radius Tokens
+     ========================================================================== */
+  --radius-xs: 50px;
+  --radius-pill: 999px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* ==========================================================================
+     Motion & Duration Tokens
+     ========================================================================== */
+  --duration-instant: 250ms;
+  --duration-fast: 300ms;
+  --duration-normal: 350ms;
+  --duration-slow: 400ms;
+  --duration-slower: 500ms;
+  --duration-step6: 600ms;
+}
+
+/* ==========================================================================
+   Color Tokens: Light Mode Default (Forma Warm Bone)
+   ========================================================================== */
+:root,
+[data-theme="light"] {
+  --bg: #ebe9e5;
+  --surface: #f7f5f0;
+  --surface-2: #dfdcd5;
+  --text: #151514;
+  --text-secondary: #45433e;
+  --text-muted: #6e6b64;
+  --text-inverse: #ebe9e5;
+  --border: rgba(21, 21, 20, 0.18);
+  --border-strong: rgba(21, 21, 20, 0.35);
+  --primary: #151514;
+
+  --fg: var(--text);
+  --muted: var(--text-secondary);
+  --line: var(--border);
+
+  /* Focus Ring */
+  --focus-ring: rgba(21, 21, 20, 0.85);
+
+  /* Feedback & Status Tokens */
+  --status-success: #1b6d34;
+  --status-warning: #875200;
+  --status-error: #b5221d;
+  --coral-color: #b5221d;
+  --amber-color: #875200;
+
+  /* Liquid Glass System (Light Mode) */
+  --surface-glass: rgba(247, 245, 240, 0.82);
+  --glass-bg: color-mix(in srgb, var(--bg) 78%, transparent);
+  --glass-surface: rgba(247, 245, 240, 0.82);
+  --glass-surface-hover: rgba(247, 245, 240, 0.92);
+  --glass-border: rgba(21, 21, 20, 0.16);
+  --glass-border-subtle: rgba(21, 21, 20, 0.12);
+  --glass-shadow: 0 12px 36px -8px rgba(21, 21, 20, 0.07), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  --overlay-bg: rgba(21, 21, 20, 0.4);
+
+  /* Application & UI helper aliases */
+  --bg-color: var(--bg);
+  --surface-color: var(--surface);
+  --surface-card: var(--surface);
+  --surface-elevated: var(--surface-2);
+  --text-main: var(--text);
+  --border-color: var(--border);
+  --border-focus: var(--primary);
+  --accent-from: var(--primary);
+  --accent-to: var(--text-muted);
+  --accent-solid: var(--primary);
+  --accent-text: var(--text-inverse);
+  --accent-3: #8C6D4F;
+  --accent-3-soft: rgba(140, 109, 79, 0.14);
+  --accent-4: #B85A3E;
+  --accent-gold: #8C6D4F;
+  --accent-gold-glow: rgba(140, 109, 79, 0.18);
+  --card-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
+  --glow-color: rgba(21, 21, 20, 0.06);
+  --glow-blend: multiply;
+  --scrollbar-thumb: var(--primary);
+  --scrollbar-thumb-hover: var(--text-muted);
+  --page-gradient: radial-gradient(circle at 50% 10%, rgba(212, 190, 158, 0.04) 0%, transparent 70%);
+
+  /* Component Interactive States */
+  --btn-primary-bg: var(--primary);
+  --btn-primary-text: var(--text-inverse);
+  --btn-primary-hover-bg: #2b2b29;
+  --btn-primary-active-bg: #000000;
+  --btn-primary-disabled-bg: rgba(21, 21, 20, 0.25);
+  --btn-primary-disabled-text: rgba(235, 233, 229, 0.6);
+
+  --btn-sec-bg: var(--surface);
+  --btn-sec-border: var(--border);
+  --btn-sec-text: var(--text);
+  --btn-sec-hover-bg: var(--surface-2);
+  --btn-sec-hover-border: var(--border-strong);
+  --btn-sec-active-bg: #cec9bf;
+
+  --btn-ghost-text: var(--text-secondary);
+  --btn-ghost-hover-bg: var(--surface-2);
+  --btn-ghost-hover-text: var(--text);
+  --btn-ghost-active-bg: #cec9bf;
+
+  --input-bg: var(--surface);
+  --input-border: var(--border);
+  --input-text: var(--text);
+  --input-placeholder: var(--text-secondary);
+  --input-hover-border: var(--border-strong);
+  --input-focus-border: var(--primary);
+  --input-error-border: var(--status-error);
+  --input-disabled-bg: var(--surface-2);
+  --input-disabled-border: rgba(21, 21, 20, 0.1);
+
+  --card-bg: var(--surface);
+  --card-border: var(--border);
+  --card-hover-border: var(--border-strong);
+  --card-hover-bg: var(--surface);
+}
+
+/* ==========================================================================
+   Color Tokens: Dark Mode (Forma Obsidian)
+   ========================================================================== */
+[data-theme="dark"] {
+  --bg: #141413;
+  --surface: #1c1c1a;
+  --surface-2: #262623;
+  --text: #f4f2ed;
+  --text-secondary: #a6a29a;
+  --text-muted: #736f68;
+  --text-inverse: #141413;
+  --border: rgba(244, 242, 237, 0.09);
+  --border-strong: rgba(244, 242, 237, 0.18);
+  --primary: #f4f2ed;
+
+  --fg: var(--text);
+  --muted: var(--text-secondary);
+  --line: var(--border);
+
+  /* Focus Ring */
+  --focus-ring: rgba(244, 242, 237, 0.85);
+
+  /* Feedback & Status Tokens */
+  --status-success: #4ade80;
+  --status-warning: #fbbf24;
+  --status-error: #f87171;
+  --coral-color: #f87171;
+  --amber-color: #fbbf24;
+
+  /* Liquid Glass System (Dark Mode) */
+  --surface-glass: rgba(28, 28, 26, 0.85);
+  --glass-bg: color-mix(in srgb, var(--bg) 84%, transparent);
+  --glass-surface: rgba(28, 28, 26, 0.85);
+  --glass-surface-hover: rgba(38, 38, 35, 0.92);
+  --glass-border: rgba(244, 242, 237, 0.10);
+  --glass-border-subtle: rgba(244, 242, 237, 0.06);
+  --glass-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(244, 242, 237, 0.08);
+  --overlay-bg: rgba(0, 0, 0, 0.65);
+
+  /* Application & UI helper aliases */
+  --bg-color: var(--bg);
+  --surface-color: var(--surface);
+  --surface-card: var(--surface);
+  --surface-elevated: var(--surface-2);
+  --text-main: var(--text);
+  --border-color: var(--border);
+  --border-focus: var(--primary);
+  --accent-from: var(--primary);
+  --accent-to: var(--text-secondary);
+  --accent-solid: var(--primary);
+  --accent-text: var(--text-inverse);
+  --accent-3: #D4BE9E;
+  --accent-3-soft: rgba(212, 190, 158, 0.16);
+  --accent-4: #E28568;
+  --accent-gold: #D4BE9E;
+  --accent-gold-glow: rgba(212, 190, 158, 0.22);
+  --card-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --glow-color: rgba(235, 233, 229, 0.08);
+  --glow-blend: screen;
+  --scrollbar-thumb: var(--primary);
+  --scrollbar-thumb-hover: var(--surface-2);
+  --page-gradient: radial-gradient(circle at 50% 10%, rgba(212, 190, 158, 0.04) 0%, transparent 70%);
+
+  /* Component Interactive States */
+  --btn-primary-bg: var(--primary);
+  --btn-primary-text: var(--text-inverse);
+  --btn-primary-hover-bg: #ffffff;
+  --btn-primary-active-bg: #d8d4cc;
+  --btn-primary-disabled-bg: rgba(235, 233, 229, 0.25);
+  --btn-primary-disabled-text: rgba(21, 21, 20, 0.6);
+
+  --btn-sec-bg: var(--surface);
+  --btn-sec-border: var(--border);
+  --btn-sec-text: var(--text);
+  --btn-sec-hover-bg: var(--surface-2);
+  --btn-sec-hover-border: var(--border-strong);
+  --btn-sec-active-bg: #2a2a27;
+
+  --btn-ghost-text: var(--text-secondary);
+  --btn-ghost-hover-bg: var(--surface-2);
+  --btn-ghost-hover-text: var(--text);
+  --btn-ghost-active-bg: #2a2a27;
+
+  --input-bg: var(--surface);
+  --input-border: var(--border);
+  --input-text: var(--text);
+  --input-placeholder: var(--text-muted);
+  --input-hover-border: var(--border-strong);
+  --input-focus-border: var(--primary);
+  --input-error-border: var(--status-error);
+  --input-disabled-bg: var(--surface-2);
+  --input-disabled-border: rgba(235, 233, 229, 0.08);
+
+  --card-bg: var(--surface);
+  --card-border: var(--border);
+  --card-hover-border: var(--border-strong);
+  --card-hover-bg: var(--surface-2);
+}
+
+/* ==========================================================================
+   Forma Global Editorial Utilities
+   ========================================================================== */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 clamp(16px, 2vw, 28px);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.55;
+  letter-spacing: -0.012em;
+  color: var(--text-secondary);
+  max-width: 36em;
+  margin: 0;
+}
+
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 0;
+  color: var(--text);
+  border-bottom: 1px solid var(--border-strong);
+  transition: opacity 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.tlink:hover {
+  opacity: 0.8;
+  border-color: var(--text);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}

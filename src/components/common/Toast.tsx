@@ -24,23 +24,23 @@ export const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
   return (
     <aside
       aria-label="Notification alert"
-      className="fixed bottom-6 right-6 z-50 max-w-md w-[calc(100vw-3rem)] bg-[#1B1410] border border-[#6B5545]/60 rounded-[20px] p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 animate-in fade-in slide-in-from-bottom-3 duration-300"
+      className="fixed bottom-6 right-6 z-50 max-w-md w-[calc(100vw-3rem)] bg-[var(--surface-color)] border border-[var(--border-color)] rounded-[20px] p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 animate-in fade-in slide-in-from-bottom-3 duration-300 text-[var(--text-main)]"
     >
       <div className="shrink-0 mt-0.5">
         {isError ? (
-          <AlertCircle className="w-5 h-5 text-[#E5675F]" aria-hidden="true" />
+          <AlertCircle className="w-5 h-5 text-[var(--status-error)]" aria-hidden="true" />
         ) : isWarning ? (
-          <AlertCircle className="w-5 h-5 text-[#E0A24A]" aria-hidden="true" />
+          <AlertCircle className="w-5 h-5 text-[var(--status-warning)]" aria-hidden="true" />
         ) : (
-          <CheckCircle2 className="w-5 h-5 text-[#5FB57A]" aria-hidden="true" />
+          <CheckCircle2 className="w-5 h-5 text-[var(--status-success)]" aria-hidden="true" />
         )}
       </div>
 
       <div className="flex-1 min-w-0">
         {toast.title && (
-          <h2 className="text-sm font-semibold text-[#F8F7F5] mb-0.5">{toast.title}</h2>
+          <h2 className="text-sm font-semibold text-[var(--text-main)] mb-0.5">{toast.title}</h2>
         )}
-        <p className="text-xs text-[#E6D2BE] leading-relaxed break-words">{toast.message}</p>
+        <p className="text-xs text-[var(--text-secondary)] leading-relaxed break-words">{toast.message}</p>
 
         {toast.actionLabel && toast.onAction && (
           <div className="mt-2.5">
@@ -50,7 +50,7 @@ export const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
                 toast.onAction?.();
                 onDismiss();
               }}
-              className="text-xs font-semibold text-[#F8F7F5] underline underline-offset-4 hover:text-[#C8B4A0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#967A68] rounded-[12px] py-0.5 transition-colors"
+              className="text-xs font-semibold text-[var(--text-main)] underline underline-offset-4 hover:text-[var(--border-focus)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)] rounded-[12px] py-0.5 transition-colors cursor-pointer"
             >
               [{toast.actionLabel}]
             </button>
@@ -62,7 +62,7 @@ export const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
         type="button"
         onClick={onDismiss}
         aria-label="Dismiss notification"
-        className="shrink-0 text-[#C8B4A0] hover:text-[#F8F7F5] p-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#967A68] transition-colors"
+        className="shrink-0 text-[var(--text-muted)] hover:text-[var(--text-main)] p-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)] transition-colors cursor-pointer"
       >
         <X className="w-4 h-4" aria-hidden="true" />
       </button>

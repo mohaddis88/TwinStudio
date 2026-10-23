@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { UserSession } from '../../types';
 import { auth, calculatePasswordStrength, PasswordStrength } from '../../services/auth';
+import { ParticleAvatarCanvas } from '../ParticleAvatarCanvas';
 import {
   Eye,
   EyeOff,
@@ -227,34 +228,41 @@ export const AuthPage: React.FC<AuthPageProps> = ({
   };
 
   return (
-    <div className="min-h-[75vh] flex items-center justify-center py-6 animate-in fade-in duration-300">
-      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        {/* LEFT COLUMN: Small glass brand visual + one line copy (hidden on mobile) */}
-        <div className="hidden md:flex md:col-span-5 flex-col justify-between p-8 rounded-[20px] border border-[var(--border-color)] h-full min-h-[440px] relative overflow-hidden"
-          style={{ backgroundColor: 'var(--surface-color)' }}
-        >
-          {/* Subtle glowing ribbon */}
-          <div
-            className="absolute -top-10 -left-10 w-44 h-44 rounded-full blur-3xl opacity-50"
-            style={{ background: 'var(--scrollbar-thumb)' }}
-          />
+    <div className="w-full min-h-screen pt-32 pb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-start animate-in fade-in duration-300 relative overflow-hidden">
+      {/* Ambient curved particle lines art behind auth card */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30">
+        <ParticleAvatarCanvas variant="lines-only" />
+      </div>
 
+      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch relative z-10 mt-8 sm:mt-12">
+        {/* LEFT COLUMN: Small glass brand visual + one line copy (hidden on mobile) */}
+        <div
+          className="hidden md:flex md:col-span-5 flex-col justify-between p-8 rounded-[24px] border border-[var(--glass-border)] shadow-sm h-full min-h-[440px] relative overflow-hidden"
+          style={{
+            background: 'var(--glass-surface)',
+            backdropFilter: 'blur(24px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(24px) saturate(140%)',
+          }}
+        >
           <div className="space-y-4 relative z-10">
-            <span className="font-serif-title text-3xl text-[var(--text-main)]">
+            <span
+              className="text-3xl font-semibold tracking-tight text-[var(--text)]"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
               TwinStudio
             </span>
-            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-              Human-looking creator library and private AI twin synthesis for growth teams.
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Human-looking creator library and private AI twin synthesis for modern brands.
             </p>
           </div>
 
-          <div className="relative z-10 space-y-3 pt-6 border-t border-[var(--border-color)] text-xs text-[var(--text-muted)]">
+          <div className="relative z-10 space-y-3 pt-6 border-t border-[var(--border)] text-xs text-[var(--text-secondary)]">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[var(--status-success)]" />
               <span>Biometric consent enforced</span>
             </div>
             <div className="flex items-center gap-2">
-              <Lock className="w-4 h-4 text-[var(--border-focus)]" />
+              <Lock className="w-4 h-4 text-[var(--text-muted)]" />
               <span>Workspace data encrypted</span>
             </div>
           </div>
@@ -262,8 +270,13 @@ export const AuthPage: React.FC<AuthPageProps> = ({
 
         {/* RIGHT COLUMN: Form Card with Tabs "Sign in | Create account" */}
         <div
-          className="md:col-span-7 p-6 sm:p-8 rounded-[20px] border border-[var(--border-color)] shadow-xl relative"
-          style={{ backgroundColor: 'var(--surface-color)' }}
+          className="md:col-span-7 p-6 sm:p-9 rounded-[24px] border border-[var(--glass-border)] shadow-sm relative"
+          style={{
+            background: 'var(--glass-surface)',
+            backdropFilter: 'blur(24px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(24px) saturate(140%)',
+            boxShadow: 'var(--glass-shadow)',
+          }}
         >
           {/* Close/Cancel button */}
           <button
@@ -460,8 +473,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({
                               className={`w-6 h-1 rounded-full ${
                                 bar <= signupStrength.score
                                   ? signupStrength.score <= 2
-                                    ? 'bg-[#E0A24A]'
-                                    : 'bg-[#5FB57A]'
+                                    ? 'bg-[var(--status-warning)]'
+                                    : 'bg-[var(--status-success)]'
                                   : 'bg-[var(--border-color)]'
                               }`}
                             />
@@ -469,10 +482,10 @@ export const AuthPage: React.FC<AuthPageProps> = ({
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-1 text-[10px] pt-1">
-                        <span className={signupStrength.hasMinLength ? 'text-[#5FB57A]' : 'text-[var(--text-muted)]'}>
+                        <span className={signupStrength.hasMinLength ? 'text-[var(--status-success)]' : 'text-[var(--text-muted)]'}>
                           ✓ 10+ characters
                         </span>
-                        <span className={signupStrength.hasNumber ? 'text-[#5FB57A]' : 'text-[var(--text-muted)]'}>
+                        <span className={signupStrength.hasNumber ? 'text-[var(--status-success)]' : 'text-[var(--text-muted)]'}>
                           ✓ Includes number
                         </span>
                       </div>
@@ -753,7 +766,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
           {/* VIEW: RESET SUCCESS */}
           {view === 'reset_success' && (
             <div className="text-center space-y-4 py-4 animate-in fade-in duration-200">
-              <div className="w-12 h-12 rounded-full bg-[#5FB57A]/15 text-[#5FB57A] flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 rounded-full bg-[var(--status-success)]/15 text-[var(--status-success)] flex items-center justify-center mx-auto">
                 <Check className="w-6 h-6" />
               </div>
               <h3 className="text-base font-semibold text-[var(--text-main)]">
