@@ -29,9 +29,10 @@ export const ModelCard: React.FC<ModelCardProps> = ({
           onSelect(model);
         }
       }}
-      className="interactive-card text-left p-3 rounded-[16px] border border-[var(--border-color)] transition-all duration-300 ease-out shadow-xs hover:shadow-xl hover:-translate-y-1 hover:border-[var(--border-focus)] group h-full flex flex-col justify-between cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)]"
+      className="interactive-card text-left p-3 rounded-[16px] border border-[var(--border)] group h-full flex flex-col justify-between cursor-pointer focus-visible:outline-none"
       style={{
-        backgroundColor: 'var(--surface-color)',
+        backgroundColor: 'var(--surface)',
+        transition: 'border-color var(--duration-fast) var(--ease)',
       }}
     >
       <div className="flex flex-col">
@@ -50,7 +51,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({
               label="AI-generated creator likeness"
               position="left"
               icon={<Sparkles className="w-3 h-3 text-[var(--border-focus)]" />}
-              triggerClassName="w-5 h-5 rounded-full bg-[var(--surface-color)]/90 backdrop-blur-xs border border-[var(--border-color)] flex items-center justify-center text-[var(--border-focus)] shadow-xs hover:scale-105 transition-transform"
+              triggerClassName="p-1 inline-flex items-center justify-center text-white/90 drop-shadow hover:scale-110 transition-transform"
             />
           </div>
 

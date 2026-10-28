@@ -18,34 +18,34 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const sizeClass =
     size === 'sm'
-      ? 'h-9 px-3.5 text-xs rounded-[10px]'
+      ? 'h-9 px-3.5 text-xs rounded-full'
       : size === 'lg'
-      ? 'h-12 px-8 text-xs font-semibold rounded-[12px]'
-      : 'h-11 px-6 text-xs font-semibold rounded-[12px]';
+      ? 'h-12 px-7 text-sm font-medium rounded-full'
+      : 'h-11 px-5 text-sm font-medium rounded-full';
 
   let variantClass = '';
   let customStyle: React.CSSProperties = { ...style };
 
   if (variant === 'primary') {
     customStyle = {
-      background: 'var(--scrollbar-thumb)',
-      color: 'var(--accent-text)',
+      background: 'var(--btn-primary-bg)',
+      color: 'var(--btn-primary-text)',
       ...style,
     };
     variantClass =
-      'active:scale-[0.98] transition-all disabled:opacity-50 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)]';
+      'transition-[background-color,opacity] duration-180 disabled:opacity-50 focus-visible:outline-none';
   } else if (variant === 'secondary') {
     variantClass =
-      'border border-[var(--border-color)] bg-[var(--surface-color)] hover:bg-[var(--surface-elevated)] text-[var(--text-main)] active:scale-[0.98] transition-all disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)]';
+      'border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)] text-[var(--text)] transition-colors duration-180 disabled:opacity-50 focus-visible:outline-none';
   } else if (variant === 'ghost') {
     variantClass =
-      'text-[var(--text-secondary)] hover:text-[var(--text-main)] hover:bg-[var(--surface-elevated)] active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)]';
+      'text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--surface-2)] transition-colors duration-180 focus-visible:outline-none';
   } else if (variant === 'danger') {
     variantClass =
-      'bg-[var(--status-error)] text-white hover:opacity-90 active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--status-error)]';
+      'bg-[var(--status-error)] text-white hover:opacity-90 transition-opacity duration-180 focus-visible:outline-none';
   } else if (variant === 'record') {
     variantClass =
-      'w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)]';
+      'w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-180 focus-visible:outline-none';
   }
 
   return (

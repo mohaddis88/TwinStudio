@@ -18,6 +18,7 @@ interface AuthPageProps {
   onSuccess: (user: UserSession) => void;
   onCancel: () => void;
   initialMode?: 'signin' | 'signup';
+  theme?: 'light' | 'dark';
 }
 
 type AuthView = 'signin' | 'signup' | 'forgot' | 'verify_email' | 'reset_password' | 'reset_success';
@@ -26,6 +27,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
   onSuccess,
   onCancel,
   initialMode = 'signin',
+  theme = 'light',
 }) => {
   const [view, setView] = useState<AuthView>(initialMode === 'signup' ? 'signup' : 'signin');
 
@@ -228,21 +230,16 @@ export const AuthPage: React.FC<AuthPageProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen pt-32 pb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-start animate-in fade-in duration-300 relative overflow-hidden">
+    <div className="page-shell flex flex-col items-center justify-start relative overflow-hidden">
       {/* Ambient curved particle lines art behind auth card */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30">
-        <ParticleAvatarCanvas variant="lines-only" />
+        <ParticleAvatarCanvas variant="lines-only" theme={theme} />
       </div>
 
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch relative z-10 mt-8 sm:mt-12">
         {/* LEFT COLUMN: Small glass brand visual + one line copy (hidden on mobile) */}
         <div
-          className="hidden md:flex md:col-span-5 flex-col justify-between p-8 rounded-[24px] border border-[var(--glass-border)] shadow-sm h-full min-h-[440px] relative overflow-hidden"
-          style={{
-            background: 'var(--glass-surface)',
-            backdropFilter: 'blur(24px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-          }}
+          className="hidden md:flex md:col-span-5 flex-col justify-between p-8 studio-card h-full min-h-[440px] relative overflow-hidden"
         >
           <div className="space-y-4 relative z-10">
             <span
@@ -270,13 +267,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
 
         {/* RIGHT COLUMN: Form Card with Tabs "Sign in | Create account" */}
         <div
-          className="md:col-span-7 p-6 sm:p-9 rounded-[24px] border border-[var(--glass-border)] shadow-sm relative"
-          style={{
-            background: 'var(--glass-surface)',
-            backdropFilter: 'blur(24px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-            boxShadow: 'var(--glass-shadow)',
-          }}
+          className="md:col-span-7 p-6 sm:p-9 studio-card relative"
         >
           {/* Close/Cancel button */}
           <button

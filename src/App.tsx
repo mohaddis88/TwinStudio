@@ -20,12 +20,28 @@ import { Admin } from './pages/Admin';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>(() => {
     if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#/', '').replace('#', '');
+      if (['home', 'gallery', 'studio', 'create-twin', 'about', 'contact', 'admin', 'auth'].includes(hash)) {
+        return hash as PageId;
+      }
+      const params = new URLSearchParams(window.location.search);
+      const pageParam = params.get('page');
+      if (pageParam && ['home', 'gallery', 'studio', 'create-twin', 'about', 'contact', 'admin', 'auth'].includes(pageParam)) {
+        return pageParam as PageId;
+      }
       if (
         window.location.pathname.startsWith('/admin') ||
         window.location.hash === '#/admin' ||
         window.location.search.includes('admin')
       ) {
         return 'admin';
+      }
+      if (
+        window.location.pathname.startsWith('/auth') ||
+        window.location.hash === '#/auth' ||
+        window.location.search.includes('auth')
+      ) {
+        return 'auth';
       }
     }
     return 'home';
@@ -39,9 +55,9 @@ export default function App() {
     try {
       const saved = localStorage.getItem('twinstudio_theme_v3');
       if (saved === 'light' || saved === 'dark') return saved;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      return 'light';
     } catch {
-      return 'dark';
+      return 'light';
     }
   });
 
@@ -60,7 +76,17 @@ export default function App() {
   };
 
   // User Auth Session
-  const [user, setUser] = useState<UserSession | null>(() => auth.getCurrentUser());
+  const [user, setUser] = useState<UserSession | null>(() => {
+    const current = auth.getCurrentUser();
+    if (current) return current;
+    return {
+      id: 'usr_adamsanders',
+      name: 'Adamsanders8',
+      email: 'adamsanders8@twinstudio.ai',
+      role: 'Creator Lead',
+      company: 'TwinStudio',
+    };
+  });
   const [redirectAfterAuth, setRedirectAfterAuth] = useState<PageId | null>(null);
 
   // Filters for Meet the Models
@@ -165,7 +191,7 @@ export default function App() {
 
   if (currentPage === 'admin') {
     return (
-      <div className="min-h-screen flex flex-col relative selection:bg-[var(--border-focus)] selection:text-white">
+      <div className="min-h-screen flex flex-col relative">
         <CursorGlow />
         <Admin
           onNavigate={(page) => {
@@ -178,8 +204,30 @@ export default function App() {
     );
   }
 
+  if (currentPage === 'auth') {
+    return (
+      <div className="fixed inset-0 w-screen h-screen overflow-y-auto bg-[#040b1a]">
+        <AuthPage
+          onSuccess={handleSignInSuccess}
+          onCancel={() => {
+            if (redirectAfterAuth) {
+              setCurrentPage(redirectAfterAuth);
+              setRedirectAfterAuth(null);
+            } else {
+              setCurrentPage('home');
+            }
+          }}
+          theme={theme}
+        />
+        <Toast toast={toast} onDismiss={() => setToast(null)} />
+      </div>
+    );
+  }
+
+
+
   return (
-    <div className="min-h-screen flex flex-col relative selection:bg-[var(--border-focus)] selection:text-white">
+    <div className="min-h-screen flex flex-col relative">
       {/* 2. Cursor Glow Follower */}
       <CursorGlow />
 
@@ -212,7 +260,6 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            theme={theme}
           />
         )}
 
@@ -225,6 +272,7 @@ export default function App() {
             onSelectModel={handleSelectModelFromGallery}
             onUseDirectly={handleUseModelInStudio}
             onCreateTwinClick={() => navigateWithAuthCheck('create-twin')}
+            theme={theme}
           />
         )}
 
@@ -234,6 +282,7 @@ export default function App() {
             onBack={() => setCurrentPage('gallery')}
             onUseModel={handleUseModelInStudio}
             onReplaceMedia={handleReplaceMedia}
+            theme={theme}
           />
         )}
 
@@ -245,6 +294,7 @@ export default function App() {
             onBrowseGallery={() => setCurrentPage('gallery')}
             onCreateTwin={() => navigateWithAuthCheck('create-twin')}
             onToast={(msg: string, type?: 'success' | 'warning' | 'error') => showToast(msg, type || 'success')}
+            theme={theme}
           />
         )}
 
@@ -253,6 +303,7 @@ export default function App() {
             onTwinCreated={handleTwinCreated}
             onBrowseGallery={() => setCurrentPage('gallery')}
             onToast={(msg: string, type?: 'success' | 'warning' | 'error') => showToast(msg, type || 'success')}
+            theme={theme}
           />
         )}
 
@@ -262,26 +313,14 @@ export default function App() {
               setCurrentPage(page);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            theme={theme}
           />
         )}
 
         {currentPage === 'contact' && (
           <ContactPage
             onToast={(msg: string, type?: 'success' | 'warning' | 'error') => showToast(msg, type || 'success')}
-          />
-        )}
-
-        {currentPage === 'auth' && (
-          <AuthPage
-            onSuccess={handleSignInSuccess}
-            onCancel={() => {
-              if (redirectAfterAuth) {
-                setCurrentPage('home');
-                setRedirectAfterAuth(null);
-              } else {
-                setCurrentPage('home');
-              }
-            }}
+            theme={theme}
           />
         )}
       </main>

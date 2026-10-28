@@ -104,7 +104,7 @@ export const MediaPlaceholder: React.FC<MediaPlaceholderProps> = ({
           label="AI-generated creator likeness"
           position="top"
           icon={<Sparkles className="w-3.5 h-3.5 text-[var(--border-focus)]" />}
-          triggerClassName="w-6 h-6 rounded-full bg-[var(--surface-color)]/90 backdrop-blur-xs border border-[var(--border-color)] flex items-center justify-center text-[var(--border-focus)] shadow-xs hover:scale-105 transition-transform"
+          triggerClassName="p-1 inline-flex items-center justify-center text-white/90 drop-shadow hover:scale-110 transition-transform"
         />
       </div>
 

@@ -126,11 +126,11 @@ export interface CmsModel {
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   hero: {
     eyebrow: 'AI HUMAN STUDIO, EST. 2026',
-    headingSans: 'Presence that',
-    headingItalic: 'answers back.',
+    headingSans: 'Your AI Twin.',
+    headingItalic: 'Real Content.\nLess Effort.',
     description:
-      'We shape synthetic creators and verified digital twins with the precision of engineering and the patience of craft. Video that holds up under attention.',
-    primaryCta: 'Create a video',
+      'Create lifelike AI twins for UGC, marketing and social content — in minutes. No camera, no studio, no limits.',
+    primaryCta: 'Create your twin',
     secondaryCta: 'Explore models',
     watermark: 'twin',
     heroAvatarImageUrl: '/hero-bust.webp',
@@ -295,7 +295,7 @@ export const DEFAULT_CMS_MODELS: CmsModel[] = [
 // STORAGE CONSTANTS & EVENTS
 // =============================================================================
 
-const STORAGE_CONTENT_KEY = 'twinstudio_cms_content_v1';
+const STORAGE_CONTENT_KEY = 'twinstudio_cms_content_v2';
 const STORAGE_MODELS_KEY = 'twinstudio_cms_models_v1';
 const CMS_UPDATE_EVENT = 'twinstudio_cms_updated';
 

@@ -115,11 +115,11 @@ export const Models: React.FC<ModelsPageProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 relative overflow-hidden pt-28 pb-20 px-4 sm:px-6 md:px-8">
+    <div className="page-shell overflow-hidden">
       <div className="relative z-10 max-w-[1280px] mx-auto space-y-10">
         {/* Editorial Header Block */}
         <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent-gold-soft,var(--border-strong))] text-[11px] font-semibold tracking-wider uppercase text-[var(--accent-gold,var(--text-secondary))] mb-1" style={{ background: 'var(--accent-gold-soft)' }}>
+          <div className="eyebrow mb-1">
             {content.selectedWork?.eyebrow || 'OUR TALENT ROSTER'}
           </div>
           <h1
@@ -146,11 +146,8 @@ export const Models: React.FC<ModelsPageProps> = ({
             minHeight: '64px',
             padding: '12px 20px',
             borderRadius: '16px',
-            background: 'var(--glass-card)',
-            backdropFilter: 'blur(32px) saturate(160%)',
-            WebkitBackdropFilter: 'blur(32px) saturate(160%)',
-            border: '1px solid var(--glass-border)',
-            boxShadow: 'var(--shadow-glass-lg), var(--card-highlight)',
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
             marginBottom: '40px',
           }}
         >
@@ -193,10 +190,10 @@ export const Models: React.FC<ModelsPageProps> = ({
                   onChange={(e) => setNicheFilter(e.target.value)}
                   className="h-[38px] pl-4 pr-9 rounded-full text-[12px] font-semibold transition-all cursor-pointer focus-visible:outline-none appearance-none"
                   style={{
-                    background: nicheFilter !== 'All' ? 'var(--accent-gold)' : 'var(--surface-2)',
+                    background: nicheFilter !== 'All' ? 'var(--text)' : 'var(--surface-2)',
                     color: nicheFilter !== 'All' ? 'var(--bg)' : 'var(--text)',
-                    border: nicheFilter !== 'All' ? '1px solid var(--accent-gold)' : '1px solid var(--border-strong)',
-                    boxShadow: nicheFilter !== 'All' ? '0 2px 8px -2px var(--accent-gold)' : '0 1px 2px rgba(0, 0, 0, 0.04)',
+                    border: nicheFilter !== 'All' ? '1px solid var(--text)' : '1px solid var(--border)',
+                    boxShadow: 'none',
                     backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${nicheFilter !== 'All' ? 'white' : 'currentColor'}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                     backgroundSize: '11px',
                     backgroundRepeat: 'no-repeat',
@@ -213,10 +210,10 @@ export const Models: React.FC<ModelsPageProps> = ({
                 onChange={(e) => setGenderFilter(e.target.value as any)}
                 className="h-[38px] pl-4 pr-9 rounded-full text-[12px] font-semibold transition-all cursor-pointer focus-visible:outline-none appearance-none"
                 style={{
-                  background: genderFilter !== 'All' ? 'var(--accent-gold)' : 'var(--surface-2)',
+                  background: genderFilter !== 'All' ? 'var(--text)' : 'var(--surface-2)',
                   color: genderFilter !== 'All' ? 'var(--bg)' : 'var(--text)',
-                  border: genderFilter !== 'All' ? '1px solid var(--accent-gold)' : '1px solid var(--border-strong)',
-                  boxShadow: genderFilter !== 'All' ? '0 2px 8px -2px var(--accent-gold)' : '0 1px 2px rgba(0, 0, 0, 0.04)',
+                  border: genderFilter !== 'All' ? '1px solid var(--text)' : '1px solid var(--border)',
+                  boxShadow: 'none',
                   backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${genderFilter !== 'All' ? 'white' : 'currentColor'}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                   backgroundSize: '11px',
                   backgroundRepeat: 'no-repeat',
@@ -235,10 +232,10 @@ export const Models: React.FC<ModelsPageProps> = ({
                 onChange={(e) => setLangFilter(e.target.value)}
                 className="h-[38px] pl-4 pr-9 rounded-full text-[12px] font-semibold transition-all cursor-pointer focus-visible:outline-none appearance-none"
                 style={{
-                  background: langFilter !== 'All' ? 'var(--accent-gold)' : 'var(--surface-2)',
+                  background: langFilter !== 'All' ? 'var(--text)' : 'var(--surface-2)',
                   color: langFilter !== 'All' ? 'var(--bg)' : 'var(--text)',
-                  border: langFilter !== 'All' ? '1px solid var(--accent-gold)' : '1px solid var(--border-strong)',
-                  boxShadow: langFilter !== 'All' ? '0 2px 8px -2px var(--accent-gold)' : '0 1px 2px rgba(0, 0, 0, 0.04)',
+                  border: langFilter !== 'All' ? '1px solid var(--text)' : '1px solid var(--border)',
+                  boxShadow: 'none',
                   backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${langFilter !== 'All' ? 'white' : 'currentColor'}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                   backgroundSize: '11px',
                   backgroundRepeat: 'no-repeat',
@@ -305,11 +302,10 @@ export const Models: React.FC<ModelsPageProps> = ({
             {filteredModels.map((creator) => (
               <article
                 key={creator.id}
-                className="group rounded-[20px] overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-2 flex flex-col cursor-pointer"
+                className="group rounded-[20px] overflow-hidden flex flex-col cursor-pointer"
                 style={{
-                  background: 'var(--glass-card)',
-                  border: '1px solid var(--glass-border)',
-                  boxShadow: 'var(--shadow-glass-md), var(--card-highlight)',
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
                 }}
                 onClick={() => onSelectModel(creator)}
               >
@@ -382,12 +378,10 @@ export const Models: React.FC<ModelsPageProps> = ({
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); onUseDirectly(creator); }}
-                      className="h-8 px-4 rounded-full text-[12px] font-bold transition-all shadow-md active:scale-95"
+                      className="h-8 px-4 rounded-full text-[12px] font-medium"
                       style={{
-                        background: 'var(--btn-gradient)',
-                        color: 'var(--bg)',
-                        boxShadow: 'var(--btn-shadow)',
-                        border: '1px solid rgba(255,255,255,0.1)'
+                        background: 'var(--btn-primary-bg)',
+                        color: 'var(--btn-primary-text)',
                       }}
                     >
                       STUDIO

@@ -119,7 +119,7 @@ export const ModelProfile: React.FC<ModelProfileProps> = ({
       : creator.angles?.[activeMedia] || (activeMedia === 'front' ? creator.photoUrl : null);
 
   return (
-    <div className="w-full min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 relative overflow-hidden pt-28 pb-20 px-4 sm:px-6 md:px-8">
+    <div className="page-shell overflow-hidden">
       {/* Subtle Ambient Background Lines behind header */}
       <div className="absolute top-0 left-0 right-0 h-96 overflow-hidden pointer-events-none z-0 opacity-40">
         <ParticleAvatarCanvas variant="lines-only" theme={theme} />
@@ -138,13 +138,7 @@ export const ModelProfile: React.FC<ModelProfileProps> = ({
         </div>
 
         {/* High-Contrast Card */}
-        <div
-          className="w-full rounded-[24px] p-6 sm:p-8 lg:p-10 shadow-sm"
-          style={{
-            background: 'var(--surface)',
-            border: '1px solid var(--border)',
-          }}
-        >
+        <div className="w-full studio-card p-6 sm:p-8 lg:p-10">
           {/* Main Layout: Compact 280px Portrait Column on Left */}
           <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 lg:gap-12 items-start">
             {/* ===================================================================
@@ -227,9 +221,7 @@ export const ModelProfile: React.FC<ModelProfileProps> = ({
                   }}
                 >
                   <span>AI-generated</span>
-                  <span className="w-3.5 h-3.5 rounded-full bg-[var(--border-strong)] text-[10px] flex items-center justify-center font-bold">
-                    i
-                  </span>
+                  <Info className="w-3.5 h-3.5 opacity-70" />
                   <div className="hidden group-hover:block absolute top-7 left-0 w-60 p-2.5 rounded-[8px] bg-[var(--text)] text-[var(--bg)] text-[11px] leading-normal shadow-xl z-20 pointer-events-none">
                     Synthetic creator made by TwinStudio. Safe for commercial brand videos.
                   </div>
@@ -310,9 +302,7 @@ export const ModelProfile: React.FC<ModelProfileProps> = ({
                     Hear voice samples (10s)
                   </span>
                   <span className="group relative cursor-help text-[12px] text-[var(--text-muted)] flex items-center gap-1">
-                    <span className="w-4 h-4 rounded-full border border-[var(--border-strong)] flex items-center justify-center font-mono text-[10px]">
-                      i
-                    </span>
+                    <Info className="w-3.5 h-3.5 opacity-70" />
                     <div className="hidden group-hover:block absolute right-0 top-6 w-64 p-3 rounded-[8px] bg-[var(--text)] text-[var(--bg)] text-[12px] leading-normal shadow-xl z-20 pointer-events-none">
                       This exact voice and cadence will be used when you generate a video in any of these languages.
                     </div>

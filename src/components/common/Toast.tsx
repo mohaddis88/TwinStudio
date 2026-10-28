@@ -24,7 +24,8 @@ export const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
   return (
     <aside
       aria-label="Notification alert"
-      className="fixed bottom-6 right-6 z-50 max-w-md w-[calc(100vw-3rem)] bg-[var(--surface-color)] border border-[var(--border-color)] rounded-[20px] p-4 shadow-2xl backdrop-blur-md flex items-start gap-3 animate-in fade-in slide-in-from-bottom-3 duration-300 text-[var(--text-main)]"
+      className="fixed bottom-6 right-6 z-50 max-w-md w-[calc(100vw-3rem)] bg-[var(--surface)] border border-[var(--border)] rounded-[16px] p-4 flex items-start gap-3 text-[var(--text)]"
+      style={{ boxShadow: 'var(--elev-3)' }}
     >
       <div className="shrink-0 mt-0.5">
         {isError ? (

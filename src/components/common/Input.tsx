@@ -14,22 +14,27 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="space-y-1.5 w-full text-left">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold text-[var(--text-main)]">
+          <label htmlFor={inputId} className="block text-xs font-medium text-[var(--text)]">
             {label}
           </label>
         )}
         <input
           id={inputId}
           ref={ref}
-          className={`w-full h-11 px-3.5 bg-[var(--bg-color)] border ${
-            error ? 'border-[var(--status-error)]' : 'border-[var(--border-color)]'
-          } rounded-[12px] text-sm text-[var(--text-main)] placeholder:text-[var(--text-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)] transition-colors ${className}`}
+          className={`w-full h-11 px-3.5 bg-[var(--surface)] border ${
+            error ? 'border-[var(--status-error)]' : 'border-[var(--border)]'
+          } rounded-full text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus-visible:outline-none transition-colors duration-180 ${className}`}
+          aria-invalid={error ? true : undefined}
           {...props}
         />
         {helperText && !error && (
           <p className="text-[11px] text-[var(--text-muted)]">{helperText}</p>
         )}
-        {error && <p className="text-[11px] text-[var(--status-error)]">{error}</p>}
+        {error && (
+          <p className="text-[11px] text-[var(--status-error)]" role="alert">
+            {error}
+          </p>
+        )}
       </div>
     );
   }
@@ -52,16 +57,17 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="space-y-1.5 w-full text-left">
         {label && (
-          <label htmlFor={selectId} className="block text-xs font-semibold text-[var(--text-main)]">
+          <label htmlFor={selectId} className="block text-xs font-medium text-[var(--text)]">
             {label}
           </label>
         )}
         <select
           id={selectId}
           ref={ref}
-          className={`w-full h-11 px-3.5 bg-[var(--bg-color)] border ${
-            error ? 'border-[var(--status-error)]' : 'border-[var(--border-color)]'
-          } rounded-[12px] text-sm text-[var(--text-main)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-focus)] transition-colors ${className}`}
+          className={`w-full h-11 px-3.5 bg-[var(--surface)] border ${
+            error ? 'border-[var(--status-error)]' : 'border-[var(--border)]'
+          } rounded-full text-sm text-[var(--text)] focus-visible:outline-none transition-colors duration-180 ${className}`}
+          aria-invalid={error ? true : undefined}
           {...props}
         >
           {children}
@@ -69,7 +75,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         {helperText && !error && (
           <p className="text-[11px] text-[var(--text-muted)]">{helperText}</p>
         )}
-        {error && <p className="text-[11px] text-[var(--status-error)]">{error}</p>}
+        {error && (
+          <p className="text-[11px] text-[var(--status-error)]" role="alert">
+            {error}
+          </p>
+        )}
       </div>
     );
   }

@@ -35,7 +35,7 @@ export const Contact: React.FC<ContactProps> = ({ onToast, theme = 'light' }) =>
   };
 
   return (
-    <div className="w-full min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 relative overflow-hidden pt-28 pb-20 px-4 sm:px-6 md:px-8">
+    <div className="page-shell overflow-hidden">
       {/* Ambient background lines behind header */}
       <div className="absolute top-0 left-0 right-0 h-96 overflow-hidden pointer-events-none z-0 opacity-40">
         <ParticleAvatarCanvas variant="lines-only" theme={theme} />
@@ -64,14 +64,7 @@ export const Contact: React.FC<ContactProps> = ({ onToast, theme = 'light' }) =>
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
           {/* Form Panel */}
           <div
-            className="rounded-[24px] p-7 sm:p-9 space-y-5 shadow-sm"
-            style={{
-              background: 'var(--glass-surface)',
-              backdropFilter: 'blur(24px) saturate(140%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-              border: '1px solid var(--glass-border)',
-              boxShadow: 'var(--glass-shadow)',
-            }}
+            className="studio-card p-7 sm:p-9 space-y-5"
           >
             {submitted ? (
               <div className="text-center py-10 space-y-3">
@@ -136,16 +129,7 @@ export const Contact: React.FC<ContactProps> = ({ onToast, theme = 'light' }) =>
           </div>
 
           {/* Direct Details in Liquid Glass */}
-          <div
-            className="rounded-[24px] p-7 sm:p-9 space-y-6 text-sm text-[var(--text-secondary)] shadow-sm"
-            style={{
-              background: 'var(--glass-surface)',
-              backdropFilter: 'blur(24px) saturate(140%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-              border: '1px solid var(--glass-border)',
-              boxShadow: 'var(--glass-shadow)',
-            }}
-          >
+          <div className="studio-card p-7 sm:p-9 space-y-6 text-sm text-[var(--text-secondary)]">
             <div>
               <span className="text-[13px] uppercase tracking-wider text-[var(--text-muted)] font-medium block mb-1">
                 Studio Email

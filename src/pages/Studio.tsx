@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Model, VideoStyle, GeneratedVideoResult, ThemeMode } from '../types';
+import { Info } from 'lucide-react';
 import { useCmsModels, CmsModel } from '../lib/cmsStore';
 import { AvatarPlaceholder } from '../components/ui/AvatarPlaceholder';
 
@@ -168,7 +169,7 @@ export const Studio: React.FC<StudioProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 relative overflow-hidden pt-28 pb-24 px-4 sm:px-6 md:px-8">
+    <div className="page-shell overflow-hidden">
       <div className="relative z-10 max-w-[1200px] mx-auto space-y-12">
         {/* Workspace Editorial Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-[var(--border)] pb-6">
@@ -195,14 +196,7 @@ export const Studio: React.FC<StudioProps> = ({
               LEFT COLUMN: Liquid Glass Control Panel
               =================================================================== */}
           <div
-            className="rounded-[24px] p-6 sm:p-8 lg:p-9 space-y-7 transition-all"
-            style={{
-              background: 'var(--glass-surface)',
-              backdropFilter: 'blur(24px) saturate(140%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-              border: '1px solid var(--glass-border)',
-              boxShadow: '0 16px 40px -10px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)',
-            }}
+            className="studio-card p-6 sm:p-8 lg:p-9 space-y-7"
           >
             {/* 1. Flagship Model Selector */}
             <div className="space-y-3">
@@ -220,18 +214,11 @@ export const Studio: React.FC<StudioProps> = ({
                         setActiveCreator(creator);
                         onSelectModel?.(creator);
                       }}
-                      className="p-3.5 rounded-[16px] border text-left flex items-center gap-3.5 transition-all cursor-pointer focus-visible:outline-none"
+                      className="p-3.5 rounded-[16px] border text-left flex items-center gap-3.5 cursor-pointer focus-visible:outline-none"
                       style={{
-                        background: isSelected
-                          ? 'linear-gradient(135deg, var(--accent-gold) 0%, color-mix(in srgb, var(--accent-gold) 85%, black) 100%)'
-                          : 'color-mix(in srgb, var(--surface-2) 75%, transparent)',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)',
-                        color: isSelected ? '#141413' : 'var(--text)',
-                        borderColor: isSelected ? 'var(--accent-gold)' : 'var(--border)',
-                        boxShadow: isSelected
-                          ? '0 4px 14px -3px rgba(212, 190, 158, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.3)'
-                          : '0 1px 3px rgba(0, 0, 0, 0.06)',
+                        background: isSelected ? 'var(--text)' : 'var(--surface-2)',
+                        color: isSelected ? 'var(--bg)' : 'var(--text)',
+                        borderColor: isSelected ? 'var(--text)' : 'var(--border)',
                       }}
                     >
                       <div className="w-11 h-13 rounded-[8px] overflow-hidden shrink-0 border border-[var(--border-strong)]">
@@ -269,19 +256,12 @@ export const Studio: React.FC<StudioProps> = ({
                       key={lang}
                       type="button"
                       onClick={() => setLanguage(lang)}
-                      className="px-4 py-2 rounded-full border text-sm font-medium cursor-pointer transition-all focus-visible:outline-none"
+                      className="px-4 py-2 rounded-full border text-sm font-medium cursor-pointer focus-visible:outline-none"
                       style={{
-                        background: isSelected
-                          ? 'linear-gradient(135deg, var(--accent-3) 0%, color-mix(in srgb, var(--accent-3) 85%, black) 100%)'
-                          : 'color-mix(in srgb, var(--surface-2) 75%, transparent)',
-                        backdropFilter: 'blur(8px)',
-                        WebkitBackdropFilter: 'blur(8px)',
+                        background: isSelected ? 'var(--text)' : 'transparent',
                         color: isSelected ? 'var(--bg)' : 'var(--text)',
-                        borderColor: isSelected ? 'var(--accent-3)' : 'var(--border-strong)',
+                        borderColor: isSelected ? 'var(--text)' : 'var(--border)',
                         fontWeight: isSelected ? 600 : 500,
-                        boxShadow: isSelected
-                          ? '0 2px 8px -1px color-mix(in srgb, var(--accent-3) 45%, transparent), inset 0 1px 0 0 rgba(255, 255, 255, 0.28)'
-                          : '0 1px 2px rgba(0, 0, 0, 0.05)',
                       }}
                     >
                       {lang}
@@ -305,25 +285,16 @@ export const Studio: React.FC<StudioProps> = ({
                         <button
                           type="button"
                           onClick={() => setFramingStyle(style)}
-                          className="px-4 py-2 rounded-full border text-sm font-medium cursor-pointer transition-all flex items-center gap-2 focus-visible:outline-none"
+                          className="px-4 py-2 rounded-full border text-sm font-medium cursor-pointer flex items-center gap-2 focus-visible:outline-none"
                           style={{
-                            background: isSelected
-                              ? 'linear-gradient(135deg, var(--accent-3) 0%, color-mix(in srgb, var(--accent-3) 85%, black) 100%)'
-                              : 'color-mix(in srgb, var(--surface-2) 75%, transparent)',
-                            backdropFilter: 'blur(8px)',
-                            WebkitBackdropFilter: 'blur(8px)',
+                            background: isSelected ? 'var(--text)' : 'transparent',
                             color: isSelected ? 'var(--bg)' : 'var(--text)',
-                            borderColor: isSelected ? 'var(--accent-3)' : 'var(--border-strong)',
+                            borderColor: isSelected ? 'var(--text)' : 'var(--border)',
                             fontWeight: isSelected ? 600 : 500,
-                            boxShadow: isSelected
-                              ? '0 2px 8px -1px color-mix(in srgb, var(--accent-3) 45%, transparent), inset 0 1px 0 0 rgba(255, 255, 255, 0.28)'
-                              : '0 1px 2px rgba(0, 0, 0, 0.05)',
                           }}
                         >
                           <span>{style}</span>
-                          <span className="w-4 h-4 rounded-full border border-current text-[10px] flex items-center justify-center font-mono opacity-70">
-                            i
-                          </span>
+                          <Info className="w-3.5 h-3.5 opacity-70" />
                         </button>
                         <div className="hidden group-hover:block absolute left-0 bottom-full mb-2 w-60 p-2.5 rounded-[8px] bg-[var(--text)] text-[var(--bg)] text-xs leading-normal shadow-xl z-20 pointer-events-none">
                           {FRAMING_TIPS[style]}
@@ -433,12 +404,10 @@ export const Studio: React.FC<StudioProps> = ({
               type="button"
               disabled={isGenerating}
               onClick={handleStartGeneration}
-              className="btn group w-full h-[52px] rounded-full inline-flex items-center justify-center gap-2 font-semibold text-base transition-transform active:scale-98 disabled:opacity-50 cursor-pointer"
+              className="btn group w-full h-[52px] rounded-full inline-flex items-center justify-center gap-2 font-medium text-base disabled:opacity-50 cursor-pointer"
               style={{
-                background: 'var(--btn-gradient)',
-                color: 'var(--bg)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                boxShadow: 'var(--btn-shadow)',
+                background: 'var(--btn-primary-bg)',
+                color: 'var(--btn-primary-text)',
               }}
             >
               {isGenerating ? (
@@ -456,14 +425,7 @@ export const Studio: React.FC<StudioProps> = ({
               RIGHT COLUMN: Standard Social Media Frame Preview
               =================================================================== */}
           <div
-            className="rounded-[24px] p-6 sm:p-8 flex flex-col items-center justify-center shadow-sm w-full"
-            style={{
-              background: 'var(--glass-surface)',
-              backdropFilter: 'blur(24px) saturate(140%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-              border: '1px solid var(--glass-border)',
-              boxShadow: '0 16px 40px -10px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)',
-            }}
+            className="studio-card p-6 sm:p-8 flex flex-col items-center justify-center w-full"
           >
             <div
               className="relative w-full rounded-[18px] overflow-hidden flex flex-col justify-between p-4 transition-all duration-300"
@@ -573,14 +535,7 @@ export const Studio: React.FC<StudioProps> = ({
               {videoHistory.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-[20px] p-5 space-y-3.5 transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    background: 'var(--glass-surface)',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
-                    border: '1px solid var(--glass-border)',
-                    boxShadow: '0 8px 24px -6px rgba(0, 0, 0, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
-                  }}
+                  className="studio-card p-5 space-y-3.5"
                 >
                   <div className="flex items-center gap-3.5">
                     <div

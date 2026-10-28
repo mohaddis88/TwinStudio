@@ -94,7 +94,6 @@ export const ParticleAvatarCanvas: React.FC<ParticleAvatarCanvasProps> = ({
     // Source image for exact Screenshot 2026-10-23 005339.jpg avatar
     const effectiveImageUrl = imageUrl || '/hero-bust.webp';
     const sourceImg = new Image();
-    sourceImg.crossOrigin = 'anonymous';
     sourceImg.src = effectiveImageUrl;
 
     // -------------------------------------------------------------------------
@@ -452,7 +451,7 @@ export const ParticleAvatarCanvas: React.FC<ParticleAvatarCanvasProps> = ({
       // forces, velocity wake, 2-octave curl-noise turbulence.
       // Radius and forces normalized to viewport width for display parity.
       // -----------------------------------------------------------------
-      const baseRadius = 200;  // Forma default: 220, but we use slightly tighter for tighter feel
+      const baseRadius = 160;  // Reduced from 200 for tighter cursor interaction
       const radiusScale = Math.max(0.6, Math.min(1.25, width / 1400));
       const radius = baseRadius * radiusScale;
       const radiusSq = radius * radius;

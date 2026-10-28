@@ -1025,6 +1025,206 @@ export const Admin: React.FC<AdminProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
+              {/* About Page Copy */}
+              <div className="space-y-4 pt-6 border-t border-[var(--border)]">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text)] m-0">
+                  About Page Copy
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Eyebrow</label>
+                    <input
+                      type="text"
+                      value={contentDraft.about.eyebrow}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          about: { ...contentDraft.about, eyebrow: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Story Title</label>
+                    <input
+                      type="text"
+                      value={contentDraft.about.storyTitle}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          about: { ...contentDraft.about, storyTitle: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Title (Sans)</label>
+                    <input
+                      type="text"
+                      value={contentDraft.about.titleSans}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          about: { ...contentDraft.about, titleSans: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Title Italic</label>
+                    <input
+                      type="text"
+                      value={contentDraft.about.titleItalic}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          about: { ...contentDraft.about, titleItalic: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Short Description</label>
+                    <textarea
+                      rows={2}
+                      value={contentDraft.about.description}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          about: { ...contentDraft.about, description: e.target.value },
+                        })
+                      }
+                      className="w-full p-2 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)] resize-none"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Story Text</label>
+                    <textarea
+                      rows={3}
+                      value={contentDraft.about.storyText}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          about: { ...contentDraft.about, storyText: e.target.value },
+                        })
+                      }
+                      className="w-full p-2 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)] resize-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Page Copy */}
+              <div className="space-y-4 pt-6 border-t border-[var(--border)]">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text)] m-0">
+                  Contact Page Copy
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Eyebrow</label>
+                    <input
+                      type="text"
+                      value={contentDraft.contact.eyebrow}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, eyebrow: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Title (Sans)</label>
+                    <input
+                      type="text"
+                      value={contentDraft.contact.titleSans}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, titleSans: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Title Italic</label>
+                    <input
+                      type="text"
+                      value={contentDraft.contact.titleItalic}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, titleItalic: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Contact Email</label>
+                    <input
+                      type="text"
+                      value={contentDraft.contact.email}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, email: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Contact Phone</label>
+                    <input
+                      type="text"
+                      value={contentDraft.contact.phone}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, phone: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Contact Address</label>
+                    <input
+                      type="text"
+                      value={contentDraft.contact.address}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, address: e.target.value },
+                        })
+                      }
+                      className="w-full h-9 px-3 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)]"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="text-[10px] uppercase text-[var(--text-secondary)]">Description</label>
+                    <textarea
+                      rows={2}
+                      value={contentDraft.contact.description}
+                      onChange={(e) =>
+                        setContentDraft({
+                          ...contentDraft,
+                          contact: { ...contentDraft.contact, description: e.target.value },
+                        })
+                      }
+                      className="w-full p-2 rounded-[4px] border border-[var(--border)] bg-[var(--bg)] text-xs text-[var(--text)] resize-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
               {/* Save Button */}
               <div className="pt-4 border-t border-[var(--border)] flex justify-end">
                 <button

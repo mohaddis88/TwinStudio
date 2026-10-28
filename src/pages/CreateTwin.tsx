@@ -55,7 +55,7 @@ export const CreateTwin: React.FC<CreateTwinProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 relative overflow-hidden pt-28 pb-20 px-4 sm:px-6 md:px-8">
+    <div className="page-shell overflow-hidden">
       <div className="relative z-10 max-w-[840px] mx-auto space-y-10">
         {/* Editorial Header */}
         <div className="space-y-3 text-center sm:text-left">
@@ -77,13 +77,10 @@ export const CreateTwin: React.FC<CreateTwinProps> = ({
         {/* Stepper Progress Pill Bar in Frosted Liquid Glass */}
         <div className="flex justify-center sm:justify-start">
           <div
-            className="inline-flex flex-wrap items-center gap-2 sm:gap-4 p-1.5 px-4 rounded-full border shadow-sm transition-all"
+            className="inline-flex flex-wrap items-center gap-2 sm:gap-4 p-1.5 px-4 rounded-full border"
             style={{
-              background: 'var(--glass-surface)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              borderColor: 'var(--glass-border)',
-              boxShadow: '0 8px 24px -6px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
+              background: 'var(--surface)',
+              borderColor: 'var(--border)',
             }}
           >
             {steps.map((s, idx) => {
@@ -95,18 +92,9 @@ export const CreateTwin: React.FC<CreateTwinProps> = ({
                   key={s.num}
                   className="flex items-center gap-1.5 py-1 px-3 rounded-full select-none text-[13px] font-medium transition-all"
                   style={{
-                    background: isCurrent
-                      ? 'linear-gradient(135deg, var(--accent-3) 0%, color-mix(in srgb, var(--accent-3) 85%, black) 100%)'
-                      : 'transparent',
-                    color: isCurrent
-                      ? 'var(--bg)'
-                      : isDone
-                      ? 'var(--text)'
-                      : 'var(--text-secondary)',
+                    background: isCurrent ? 'var(--text)' : 'transparent',
+                    color: isCurrent ? 'var(--bg)' : isDone ? 'var(--text)' : 'var(--text-secondary)',
                     fontWeight: isCurrent ? 600 : 500,
-                    boxShadow: isCurrent
-                      ? '0 2px 8px -1px color-mix(in srgb, var(--accent-3) 45%, transparent), inset 0 1px 0 0 rgba(255, 255, 255, 0.28)'
-                      : 'none',
                   }}
                 >
                   <span className="font-mono text-xs opacity-75">
@@ -121,14 +109,7 @@ export const CreateTwin: React.FC<CreateTwinProps> = ({
 
         {/* Centered Liquid Glass Workspace Card */}
         <div
-          className="max-w-[760px] mx-auto rounded-[24px] p-7 sm:p-10 space-y-7 shadow-sm border transition-all"
-          style={{
-            background: 'var(--glass-surface)',
-            backdropFilter: 'blur(24px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-            borderColor: 'var(--glass-border)',
-            boxShadow: '0 16px 40px -10px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)',
-          }}
+          className="max-w-[760px] mx-auto studio-card p-7 sm:p-10 space-y-7"
         >
           {/* STEP 1: Photos & Voice */}
           {activeStep === 1 && (
@@ -356,12 +337,10 @@ export const CreateTwin: React.FC<CreateTwinProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigate?.('studio')}
-                  className="btn h-[50px] px-8 rounded-full text-sm font-semibold cursor-pointer transition-all active:scale-98"
+                  className="btn h-[50px] px-8 rounded-full text-sm font-medium cursor-pointer"
                   style={{
-                    background: 'var(--btn-gradient)',
-                    color: 'var(--bg)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    boxShadow: 'var(--btn-shadow)',
+                    background: 'var(--btn-primary-bg)',
+                    color: 'var(--btn-primary-text)',
                   }}
                 >
                   Open in Studio
@@ -389,12 +368,10 @@ export const CreateTwin: React.FC<CreateTwinProps> = ({
                 type="button"
                 onClick={handleNext}
                 disabled={isProcessing}
-                className="h-12 px-8 rounded-full text-sm font-semibold cursor-pointer transition-all active:scale-98 disabled:opacity-50"
+                className="h-12 px-8 rounded-full text-sm font-medium cursor-pointer disabled:opacity-50"
                 style={{
-                  background: 'linear-gradient(180deg, var(--text) 0%, color-mix(in srgb, var(--text) 88%, black) 100%)',
-                  color: 'var(--bg)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  boxShadow: '0 4px 16px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.22)',
+                  background: 'var(--btn-primary-bg)',
+                  color: 'var(--btn-primary-text)',
                 }}
               >
                 {activeStep === 3

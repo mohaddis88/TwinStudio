@@ -13,7 +13,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, theme = 'light' }) => 
   const about = content.about;
 
   return (
-    <div className="w-full min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-500 relative overflow-hidden pt-28 pb-20 px-4 sm:px-6 md:px-8">
+    <div className="page-shell overflow-hidden">
       {/* Ambient background lines behind header */}
       <div className="absolute top-0 left-0 right-0 h-96 overflow-hidden pointer-events-none z-0 opacity-40">
         <ParticleAvatarCanvas variant="lines-only" theme={theme} />
@@ -40,14 +40,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, theme = 'light' }) => 
 
         {/* Liquid Glass Story Card */}
         <div
-          className="rounded-[24px] p-8 sm:p-12 space-y-6 shadow-sm"
-          style={{
-            background: 'var(--glass-surface)',
-            backdropFilter: 'blur(24px) saturate(140%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-            border: '1px solid var(--glass-border)',
-            boxShadow: 'var(--glass-shadow)',
-          }}
+          className="studio-card p-8 sm:p-12 space-y-6"
         >
           <h2
             className="text-[26px] font-semibold tracking-tight text-[var(--text)] m-0"
